@@ -439,7 +439,7 @@ body.show-pt .pt b{color:var(--coral-dk)}
 </footer>
 <nav class="dock" aria-label="お問い合わせ">
   <a class="d-tel" href="tel:0742772042"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>電話する</a>
-  <a class="d-rsv" href="https://luana-ohana.com/contact/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>見学を予約する</a>
+  <a class="d-rsv" href="https://docs.google.com/forms/d/e/1FAIpQLSfInOrBW9M7Ftin0xpFgcP7HHnzcRx-cOkjbQ6qtnJT0K_3fg/viewform" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>見学を予約する</a>
 </nav>
 <script>
 (function(){
@@ -456,7 +456,7 @@ body.show-pt .pt b{color:var(--coral-dk)}
         '<div class="meta">'+cat(p)+esc(fmt(p.date))+'</div><h1>'+esc(p.title)+'</h1>'+
         (p.image?'<a class="pimg" href="'+esc(p.image)+'" target="_blank" rel="noopener"><img src="'+esc(p.image)+'" alt="'+esc(p.title)+'"></a><p class="zoom">画像を押すと大きく表示されます。</p>':'')+
         '<div class="body">'+(p.body||'')+'</div>'+
-        '<div class="back"><a class="btn btn-line btn-sm" href="./">ブログの一覧へ</a><a class="btn btn-coral btn-sm" href="https://luana-ohana.com/contact/">見学・体験の予約</a></div></article>';
+        '<div class="back"><a class="btn btn-line btn-sm" href="./">ブログの一覧へ</a><a class="btn btn-coral btn-sm" href="https://docs.google.com/forms/d/e/1FAIpQLSfInOrBW9M7Ftin0xpFgcP7HHnzcRx-cOkjbQ6qtnJT0K_3fg/viewform" target="_blank" rel="noopener">見学・体験の予約</a></div></article>';
       window.scrollTo(0,0);
     }else if(ps.length){
       app.innerHTML='<div class="pcards">'+ps.map(function(p){
