@@ -362,6 +362,23 @@ body.show-pt .pt b{color:var(--coral-dk)}
 
 .reveal{animation:rise .7s ease both}
 @keyframes rise{from{transform:translateY(14px)}to{transform:none}}
+
+/* お知らせ・ブログ */
+.news{padding-block:clamp(36px,6vw,60px);background:#fff}
+.news-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.news-head h2{font-size:clamp(20px,3.4vw,26px);font-weight:900;margin:6px 0 0}
+.news-more{font-weight:700;color:var(--sea-ink);text-decoration:none;border-bottom:2px solid var(--sea);padding-bottom:2px;white-space:nowrap}
+.pcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.pcard{display:flex;flex-direction:column;background:#fff;border:1px solid #dcebef;border-radius:18px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .15s ease,box-shadow .15s ease}
+.pcard:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(31,111,134,.14)}
+.pcard .th{aspect-ratio:3/2;background:var(--sky);overflow:hidden}
+.pcard .th img{width:100%;height:100%;object-fit:cover;display:block}
+.pcard .tx{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px}
+.pcard .meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--cocoa-2)}
+.pcat{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--sea);border-radius:999px;padding:2px 10px}
+.pcat.info{background:var(--coral)}
+.pcard b{font-size:15px;line-height:1.5;font-weight:700}
+@media (max-width:720px){.pcards{grid-template-columns:1fr;gap:10px}.pcard{flex-direction:row;align-items:stretch}.pcard .th{width:38%;flex-shrink:0;aspect-ratio:auto;min-height:84px}.pcard .tx{justify-content:center}}
 </style>
 </head>
 <body>
@@ -380,6 +397,7 @@ body.show-pt .pt b{color:var(--coral-dk)}
       <a href="#flow">ご利用までの流れ</a>
       <a href="#faq">よくある質問</a>
       <a href="#access">アクセス</a>
+      <a href="blog/">ブログ</a>
     </nav>
     <div class="hcta">
       <a class="tel-mini" href="tel:0742772042"><small>お電話でのご相談</small><b>0742-77-2042</b></a>
@@ -420,6 +438,17 @@ body.show-pt .pt b{color:var(--coral-dk)}
     </div>
   </div>
   <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C 240 0, 480 56, 720 28 S 1200 0, 1440 26 L1440 56 L0 56 Z" fill="#ffffff"/></svg>
+</section>
+
+<!-- お知らせ・今月のプログラム（blog/posts.json から自動表示） -->
+<section class="news" id="news" aria-labelledby="h-news" hidden>
+  <div class="wrap">
+    <div class="news-head">
+      <div><span class="eyebrow">News &amp; Program</span><h2 id="h-news">お知らせ・今月のプログラム</h2></div>
+      <a class="news-more" href="blog/">一覧を見る</a>
+    </div>
+    <div class="pcards" id="newsList"></div>
+  </div>
 </section>
 
 <!-- お悩み -->
@@ -762,7 +791,7 @@ body.show-pt .pt b{color:var(--coral-dk)}
 
     <div class="flyer">
       <div><h3>ご案内チラシ</h3><p>ルアナのご案内をA4・1枚にまとめました。ご家族やご関係先への共有にお使いください。</p></div>
-      <a class="btn btn-line" href="/luana-flyer.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>チラシをダウンロード（PDF）</a>
+      <a class="btn btn-line" href="luana-flyer.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>チラシをダウンロード（PDF）</a>
     </div>
   </div>
 </section>
@@ -804,6 +833,21 @@ body.show-pt .pt b{color:var(--coral-dk)}
       try{navigator.clipboard.writeText(v).then(done,function(){btn.textContent=v;});}catch(e){btn.textContent=v;}
     });
   });
+})();
+</script>
+
+<script>
+(function(){
+  var esc=function(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  var fmt=function(d){var p=String(d).split('-');return p.length===3?(+p[0])+'年'+(+p[1])+'月'+(+p[2])+'日':d;};
+  fetch('blog/posts.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(ps){
+    if(!ps||!ps.length)return;
+    document.getElementById('newsList').innerHTML=ps.slice(0,3).map(function(p){
+      return '<a class="pcard" href="blog/?p='+encodeURIComponent(p.id)+'">'+(p.image?'<span class="th"><img src="'+esc(p.image)+'" alt="" loading="lazy"></span>':'')+
+        '<span class="tx"><span class="meta"><span class="pcat'+(p.cat==='お知らせ'?' info':'')+'">'+esc(p.cat)+'</span>'+esc(fmt(p.date))+'</span><b>'+esc(p.title)+'</b></span></a>';
+    }).join('');
+    document.getElementById('news').hidden=false;
+  }).catch(function(){});
 })();
 </script>
 
