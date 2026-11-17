@@ -379,6 +379,18 @@ body.show-pt .pt b{color:var(--coral-dk)}
 .pcat.info{background:var(--coral)}
 .pcard b{font-size:15px;line-height:1.5;font-weight:700}
 @media (max-width:720px){.pcards{grid-template-columns:1fr;gap:10px}.pcard{flex-direction:row;align-items:stretch}.pcard .th{width:38%;flex-shrink:0;aspect-ratio:auto;min-height:84px}.pcard .tx{justify-content:center}}
+.exterior{margin:28px 0 0;position:relative}
+.exterior img{display:none;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:20px}
+.exterior.has-photo img{display:block}
+.exterior.has-photo .ex-ph{display:none}
+.exterior .ex-ph{aspect-ratio:16/7;border:2px dashed var(--sea);border-radius:20px;background:var(--sky);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--sea-ink);text-align:center}
+.exterior .ex-ph svg{width:44px;height:44px;margin-bottom:4px}
+.exterior .ex-ph b{font-size:17px}
+.exterior .ex-ph span{font-size:14px}
+.exterior figcaption{display:none;font-size:13px;color:var(--cocoa-2);margin-top:8px;text-align:center}
+.exterior.has-photo figcaption{display:block}
+.exterior+.overview{margin-top:24px}
+@media (max-width:560px){.exterior .ex-ph{aspect-ratio:16/10}}
 .igstrip{background:#fff;padding:0 0 clamp(32px,5vw,52px)}
 .igbox{display:flex;align-items:center;justify-content:space-between;gap:14px 24px;flex-wrap:wrap;border-radius:20px;padding:18px 22px;background:linear-gradient(100deg,#fff4e6,#ffe9f1)}
 .igbox b{display:block;font-size:17px;font-weight:900}
@@ -775,6 +787,11 @@ footer.site .fig svg{width:18px;height:18px}
   <div class="wrap">
     <p class="eyebrow">事業所概要・アクセス</p>
     <h2 class="sec-h" id="h-access">放課後等デイサービス ルアナ</h2>
+    <figure class="exterior" id="exterior">
+      <img src="luana-exterior.jpg" alt="放課後等デイサービス ルアナの外観" onload="this.parentNode.classList.add('has-photo')" onerror="this.remove()">
+      <div class="ex-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><b>外観の写真</b><span>ただいま準備中です</span></div>
+      <figcaption>ルアナの外観</figcaption>
+    </figure>
     <div class="overview">
       <dl class="spec">
         <div><dt>所在地</dt><dd>〒631-0836<br>奈良県奈良市西大寺竜王町1丁目4-71-3</dd></div>
