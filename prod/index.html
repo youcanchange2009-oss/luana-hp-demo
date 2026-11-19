@@ -895,7 +895,7 @@ footer.site .fig svg{width:18px;height:18px}
 (function(){
   var esc=function(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
   var fmt=function(d){var p=String(d).split('-');return p.length===3?(+p[0])+'年'+(+p[1])+'月'+(+p[2])+'日':d;};
-  fetch('blog/posts.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(ps){
+  fetch('blog/posts.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(ps){
     if(!ps||!ps.length)return;
     document.getElementById('newsList').innerHTML=ps.slice(0,3).map(function(p){
       return '<a class="pcard" href="blog/?p='+encodeURIComponent(p.id)+'">'+(p.image?'<span class="th"><img src="'+esc(p.image)+'" alt="" loading="lazy"></span>':'')+
@@ -906,5 +906,10 @@ footer.site .fig svg{width:18px;height:18px}
 })();
 </script>
 
+<script>
+/* 最新版チェック：サーバーの luana-version.txt と違えば最新のページを開き直す */
+(function(){var B='20261119b',busy=false;function chk(){if(busy)return;busy=true;fetch('/luana-version.txt?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.text():'';}).then(function(v){busy=false;v=(v||'').trim();if(!v||v===B)return;var u=new URL(location.href);if(u.searchParams.get('v')===v)return;u.searchParams.set('v',v);location.replace(u.toString());}).catch(function(){busy=false;});}
+chk();addEventListener('pageshow',function(e){if(e.persisted)chk();});document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')chk();});})();
+</script>
 </body>
 </html>

@@ -448,7 +448,7 @@ body.show-pt .pt b{color:var(--coral-dk)}
   var cat=function(p){return '<span class="pcat'+(p.cat==='お知らせ'?' info':'')+'">'+esc(p.cat)+'</span>';};
   var app=document.getElementById('app');
   var id=new URLSearchParams(location.search).get('p');
-  fetch('posts.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(ps){
+  fetch('posts.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(ps){
     var p=id&&ps.filter(function(x){return x.id===id;})[0];
     if(p){
       document.title=p.title+'｜放課後等デイサービス ルアナ';
@@ -465,6 +465,11 @@ body.show-pt .pt b{color:var(--coral-dk)}
     }else{app.innerHTML='<p class="empty">まだ記事がありません。</p>';}
   }).catch(function(){app.innerHTML='<p class="empty">記事を読み込めませんでした。時間をおいてもう一度お試しください。</p>';});
 })();
+</script>
+<script>
+/* 最新版チェック：サーバーの luana-version.txt と違えば最新のページを開き直す */
+(function(){var B='20261119b',busy=false;function chk(){if(busy)return;busy=true;fetch('/luana-version.txt?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.text():'';}).then(function(v){busy=false;v=(v||'').trim();if(!v||v===B)return;var u=new URL(location.href);if(u.searchParams.get('v')===v)return;u.searchParams.set('v',v);location.replace(u.toString());}).catch(function(){busy=false;});}
+chk();addEventListener('pageshow',function(e){if(e.persisted)chk();});document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')chk();});})();
 </script>
 </body>
 </html>
