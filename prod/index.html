@@ -387,7 +387,7 @@ body.show-pt .pt b{color:var(--coral-dk)}
 .pcard b{font-size:15px;line-height:1.5;font-weight:700}
 @media (max-width:720px){.pcards{grid-template-columns:1fr;gap:10px}.pcard{flex-direction:row;align-items:stretch}.pcard .th{width:38%;flex-shrink:0;aspect-ratio:auto;min-height:84px}.pcard .tx{justify-content:center}}
 .exterior{margin:28px 0 0;position:relative}
-.exterior img{display:none;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:20px}
+.exterior img{display:none;width:100%;max-width:420px;margin:0 auto;aspect-ratio:3/4;object-fit:cover;border-radius:20px;box-shadow:var(--shadow)}
 .exterior.has-photo img{display:block}
 .exterior.has-photo .ex-ph{display:none}
 .exterior .ex-ph{aspect-ratio:16/7;border:2px dashed var(--sea);border-radius:20px;background:var(--sky);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--sea-ink);text-align:center}
@@ -406,6 +406,8 @@ body.show-pt .pt b{color:var(--coral-dk)}
 footer.site .fig{display:inline-flex;align-items:center;gap:6px;color:#f5ece6;margin-top:8px;font-size:14px}
 footer.site .fig svg{width:18px;height:18px}
 @media (max-width:560px){.igbox .btn{width:100%}}
+.igfeed{max-width:620px;margin:18px auto 0;border-radius:16px;overflow:hidden;background:#fff;border:1px solid #f0e4da}
+.igfeed iframe{display:block;width:100%;height:370px;border:0}
 .h1-k{display:block;font-size:clamp(13px,2vw,16px);font-weight:700;letter-spacing:.06em;color:var(--sea-ink);margin-bottom:10px;line-height:1.5}
 .seo-lead{margin-top:14px;max-width:46em;line-height:2;color:var(--cocoa-2)}
 </style>
@@ -484,11 +486,15 @@ footer.site .fig svg{width:18px;height:18px}
 <section class="igstrip" aria-label="Instagram">
   <div class="wrap">
     <div class="igbox">
-      <div><b>ルアナのInstagramができました</b><span>@luana.day_nara</span></div>
+      <div><b>ルアナのInstagram</b><span>@luana.day_nara　ルアナのようすを発信しています</span></div>
       <a class="btn btn-ig" href="https://www.instagram.com/luana.day_nara/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagramを開く</a>
     </div>
+    <div class="igfeed"><iframe id="igfeed" src="https://www.instagram.com/luana.day_nara/embed/" title="ルアナのInstagramの最新の投稿" loading="lazy" scrolling="no"></iframe></div>
   </div>
 </section>
+<script>
+(function(){var f=document.getElementById('igfeed');if(!f)return;function fit(){var w=f.clientWidth;f.style.height=Math.round(162+w/3)+'px'}fit();addEventListener('resize',fit)})();
+</script>
 
 <!-- お悩み -->
 <section class="band paper" aria-labelledby="h-worry">
