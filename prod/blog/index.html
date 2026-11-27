@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="ja">
 <head>
+<!-- Google tag (アクセス解析) -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TQT9TQ2P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="canonical" href="https://luana-ohana.com/blog/">
@@ -468,7 +476,7 @@ body.show-pt .pt b{color:var(--coral-dk)}
 </script>
 <script>
 /* 最新版チェック：サーバーの luana-version.txt と違えば最新のページを開き直す */
-(function(){var B='20261119b',busy=false;function chk(){if(busy)return;busy=true;fetch('/luana-version.txt?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.text():'';}).then(function(v){busy=false;v=(v||'').trim();if(!v||v===B)return;var u=new URL(location.href);if(u.searchParams.get('v')===v)return;u.searchParams.set('v',v);location.replace(u.toString());}).catch(function(){busy=false;});}
+(function(){var B='20261127a',busy=false;function chk(){if(busy)return;busy=true;fetch('/luana-version.txt?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.text():'';}).then(function(v){busy=false;v=(v||'').trim();if(!v||v===B)return;var u=new URL(location.href);if(u.searchParams.get('v')===v)return;u.searchParams.set('v',v);location.replace(u.toString());}).catch(function(){busy=false;});}
 chk();addEventListener('pageshow',function(e){if(e.persisted)chk();});document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')chk();});})();
 </script>
 </body>
